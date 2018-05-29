@@ -54,6 +54,9 @@
 					<!-- <compilerArgument>-parameters</compilerArgument> -->
 					<source>1.8</source>
 					<target>1.8</target>
+					<compilerarguments>
+						<bootclasspath>${JAVA_HOME}/jre/lib/rt.jar</bootclasspath>
+					</compilerarguments>
 				</configuration>
 			</plugin>
 		</plugins>
