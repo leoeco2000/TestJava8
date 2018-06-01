@@ -1,16 +1,17 @@
-package yuanmadao.Interpreter.Impl;
+package yuanmadao.Interpreter.Impl.multi;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.w3c.dom.Element;
 
 
 /*
  * 首先这个元素相当于组合模式的Composite对象，因此需要对子元素进行维护，
  * 另外这个元素的解释处理，只是需要把自己找到，作为下一个元素的父元素就好了。
- * */
+ */
 /**
- * 元素作为非终结符对应的解释器，解释并执行中间元素
+ * 单个元素作为非终结符的解释器
  */
 public class ElementExpression extends ReadXmlExpression {
   /**
@@ -37,23 +38,34 @@ public class ElementExpression extends ReadXmlExpression {
   }
 
   public String[] interpret(Context c) {
-    // 先取出上下文里的当前元素作为父级元素
-    // 查找到当前元素名称所对应的xml元素，并设置回到上下文中
-    Element pEle = c.getPreEle();
-    if (pEle == null) {
+    // 先取出上下文里的父级元素
+    List<Element> pEles = c.getPreEles();
+    Element ele = null;
+
+    // 把当前获取的元素放到上下文里面
+    List<Element> nowEles = new ArrayList<Element>();
+    if (pEles.size() == 0) {
       // 说明现在获取的是根元素
-      c.setPreEle(c.getDocument().getDocumentElement());
+      ele = c.getDocument().getDocumentElement();
+      pEles.add(ele);
+      c.setPreEles(pEles);
     } else {
-      // 根据父级元素和要查找的元素的名称来获取当前的元素
-      Element nowEle = c.getNowEle(pEle, eleName);
-      // 把当前获取的元素放到上下文里面
-      c.setPreEle(nowEle);
+      for (Element tempEle : pEles) {
+        nowEles.addAll(c.getNowEles(tempEle, eleName));
+        if (nowEles.size() > 0) {
+          // 找到一个就停止
+          break;
+        }
+      }
+      List<Element> tempList = new ArrayList<Element>();
+      tempList.add(nowEles.get(0));
+      c.setPreEles(tempList);
     }
 
     // 循环调用子元素的interpret方法
     String[] ss = null;
-    for (ReadXmlExpression ele : eles) {
-      ss = ele.interpret(c);
+    for (ReadXmlExpression tempEle : eles) {
+      ss = tempEle.interpret(c);
     }
     return ss;
   }

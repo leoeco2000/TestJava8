@@ -1,4 +1,4 @@
-package yuanmadao.Interpreter.Impl;
+package yuanmadao.Interpreter.Impl.single;
 
 /**
  * 用于处理自定义Xml取值表达式的接口
