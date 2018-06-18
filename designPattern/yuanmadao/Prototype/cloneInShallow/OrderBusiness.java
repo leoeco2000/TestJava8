@@ -11,7 +11,8 @@ public class OrderBusiness {
     while (order.getOrderProductNum() > 1000) {
       // 2：如果大于，还需要继续拆分
       // 2.1再新建一份订单，跟传入的订单除了数量不一样外，其它都相同
-      OrderApi newOrder = order.cloneOrder();
+//      OrderApi newOrder = order.cloneOrder();
+      OrderApi newOrder = order.clone();
       // 然后进行赋值，产品数量为1000
       newOrder.setOrderProductNum(1000);
 

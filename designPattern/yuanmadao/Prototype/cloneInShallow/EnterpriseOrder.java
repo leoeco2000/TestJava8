@@ -46,11 +46,11 @@ public class EnterpriseOrder implements OrderApi {
 //    return order;
 //  }
 
-  public Object clone() {
+  public EnterpriseOrder clone() {
     // 克隆方法的真正实现，直接调用父类的克隆方法就可以了
-    Object obj = null;
+    EnterpriseOrder obj = null;
     try {
-      obj = super.clone();
+      obj = (EnterpriseOrder) super.clone();
     } catch (CloneNotSupportedException e) {
       e.printStackTrace();
     }

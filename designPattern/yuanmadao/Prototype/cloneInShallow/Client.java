@@ -11,7 +11,7 @@ public class Client {
      System.out.println("这是第一次获取的对象实例==="+oa1.getOrderProductNum());
 
      //通过克隆来获取新的实例
-     OrderApi oa2 = (OrderApi)oa1.cloneOrder();
+     OrderApi oa2 = (OrderApi)oa1.clone();
      //修改它的数量
      oa2.setOrderProductNum(80);
      //输出克隆出来的对象的值
