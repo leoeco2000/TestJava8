@@ -1,4 +1,4 @@
-package temp;
+package zuoxiaolong.command.command2;
 
 public class Programmer {
 
