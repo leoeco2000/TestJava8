@@ -1,4 +1,4 @@
-package temp.command;
+package zuoxiaolong.command.command2;
 
 public class Demand implements Task{
 
