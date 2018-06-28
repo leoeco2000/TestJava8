@@ -15,7 +15,7 @@ public class UnThreadSafeCountingProcessor implements CountingProcessor {
     private long count = 0;
 
     public void process() {
-        doProcess();
+//        doProcess();
         count ++;
     }
 
@@ -23,6 +23,6 @@ public class UnThreadSafeCountingProcessor implements CountingProcessor {
         return count;
     }
 
-    private void doProcess() {
-    }
+//    private void doProcess() {
+//    }
 }
