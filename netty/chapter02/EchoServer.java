@@ -51,12 +51,14 @@ public class EchoServer {
       b.group(group) // 4
           .channel(NioServerSocketChannel.class) // 5
           .localAddress(new InetSocketAddress(port)) // 6
+          // 添加EchoServerHandler 到 Channel 的 ChannelPipeline
           .childHandler(new ChannelInitializer<SocketChannel>() { // 7
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
               ch.pipeline().addLast(new EchoServerHandler());
             }
           });
+      // 绑定的服务器;sync 等待服务器关闭
       ChannelFuture f = b.bind().sync(); // 8
       System.out.println(
           EchoServer.class.getName() + " started and listen on " + f.channel().localAddress());

@@ -1,6 +1,7 @@
 package laobing.concurrency.chapter3_timer;
 
 import java.util.Calendar;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +21,7 @@ public class ScheduledExecutorServiceDemo {
         }
     }
     /*TimerTask实现Runable接口*/
-    static class MyTimerTask extends java.util.TimerTask {
+    static class MyTimerTask extends TimerTask {
         public void run() {
             System.out.println(Thread.currentThread().getName()+":"+ Calendar.getInstance().get(Calendar.SECOND));
         }
