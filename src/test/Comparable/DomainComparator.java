@@ -1,6 +1,9 @@
 package test.Comparable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class DomainComparator implements Comparator<Domain>
 {
@@ -17,14 +20,15 @@ public class DomainComparator implements Comparator<Domain>
    
    public static void main(String[] args)
    {
-      Domain d1 = new Domain("c");
-      Domain d2 = new Domain("c");
-      Domain d3 = new Domain("b");
-      Domain d4 = new Domain("d");
+      Domain d1 = new Domain("3");
+      Domain d2 = new Domain("3");
+      Domain d3 = new Domain("2");
+      Domain d4 = new Domain("4");
       DomainComparator dc = new DomainComparator();
       System.out.println(dc.compare(d1, d2));
       System.out.println(dc.compare(d1, d3));
       System.out.println(dc.compare(d1, d4));
+      
    }
 
 }

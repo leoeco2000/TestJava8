@@ -2,10 +2,10 @@ package test.java8Test;
 
 import static java.util.stream.Collectors.groupingBy;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 import test.java8Test.Java8InAction.chap5.Trader;
 import test.java8Test.Java8InAction.chap5.Transaction;
 
@@ -38,7 +38,7 @@ public class Test1 {
                           })
                         )
                         );
-    System.out.println(map);
+//    System.out.println(map);
     
     List<Integer> list = Arrays.asList(1,2,4,2,8,5);
 //    Collections.sort(list, new Comparator<Integer>() {
@@ -48,11 +48,43 @@ public class Test1 {
 //      }
 //    });
     
-    Comparator<Integer> c = (o1,o2)->o1.compareTo(o2);
-    list.stream()
-    .sorted(c)
-    .distinct()
-    .forEach(System.out::println);
-    
+//    Comparator<Integer> c = (o1,o2)->o1.compareTo(o2);
+//    list.stream()
+//    .sorted(c)
+//    .distinct()
+//    .forEach(System.out::println);
+//    Supplier<Long> sp = new Supplier<Long>() {
+//      long value = 0;
+//
+//      public Long get() {
+//          this.value = this.value + 1;
+//          return this.value;
+//      }
+//    };
+//    Stream<Long> natural = Stream.generate(new Supplier<Long>() {
+//      long value = 0;
+//
+//      public Long get() {
+//          this.value = this.value + 1;
+//          return this.value;
+//      }
+//    });
+//    natural.limit(10).forEach(System.out::println);
+//    
+    String[] arr1 = {"a", "b", "c", "d"};
+    String[] arr2 = {"e", "f", "c", "d"};
+    String[] arr3 = {"h", "j", "c", "d"};
+   // Stream.of(arr1, arr2, arr3).flatMap(x -> Arrays.stream(x)).forEach(System.out::println);
+    Stream.of(arr1, arr2, arr3).flatMap(Arrays::stream).forEach(System.out::println);
+    Stream.iterate(0,x->x+1).limit(10).forEach(System.out::println);
+  }
+}
+class NaturalSupplier implements Supplier<Long> {
+
+  long value = 0;
+
+  public Long get() {
+      this.value = this.value + 1;
+      return this.value;
   }
 }
